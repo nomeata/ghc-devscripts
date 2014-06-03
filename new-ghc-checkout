@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if [ -z "$1" ]
+then
+	echo "Usage: $0 name"
+	exit 1
+fi
+
+set -e
+cd /5playpen/t-jobrei/
+git clone ghc-master "$1"
+cd "$1"
+./sync-all --no-dph --testsuite get
+./sync-all -r git://git.haskell.org remote set-url origin
+./sync-all -r ssh://git@git.haskell.org remote set-url --push origin
+./sync-all checkout master
+./sync-all pull
+cp ../ghc-master/mk/build.mk mk/
+perl boot
+./configure
+make -j4 V=0
+echo "Done, you should now do a "
+echo "cd $(realpath .)"
