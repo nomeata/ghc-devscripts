@@ -11,8 +11,8 @@ then
   exit 1
 fi
 
-path1="$( find $tree1 -path \*/$benchname -type d )"
-path2="$( find $tree2 -path \*/$benchname -type d )"
+path1="$( find $tree1/nofib -path \*/$benchname -type d )"
+path2="$( find $tree2/nofib -path \*/$benchname -type d )"
 
 if [ -z "$path1" ]
 then
@@ -22,7 +22,7 @@ fi
 echo "Found $path1 in $tree1"
 if [ -z "$path2" ]
 then
-  echo "Could not find a directory $benchname in $path2"
+  echo "Could not find a directory $benchname in $tree2"
   exit 1
 fi
 echo "Found $path2 in $tree2"

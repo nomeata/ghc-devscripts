@@ -26,7 +26,7 @@ then
 fi
 
 
-diff -U 10000 \
+${DIFF:-diff -U 10000} \
  <($tree1/inplace/bin/ghc-stage1 --show-iface $path1) \
  <($tree2/inplace/bin/ghc-stage1 --show-iface $path2)
 

@@ -7,10 +7,10 @@ then
 fi
 
 set -e
-cd /5playpen/t-jobrei/
+cd /data1/breitner/ghc
 git clone ghc-master "$1"
 cd "$1"
-./sync-all --no-dph --testsuite get
+./sync-all --no-dph --nofib get
 ./sync-all -r git://git.haskell.org remote set-url origin
 ./sync-all -r ssh://git@git.haskell.org remote set-url --push origin
 ./sync-all checkout master
